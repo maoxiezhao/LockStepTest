@@ -84,8 +84,11 @@ function setup_project_definines()
     defines
     {
         ("CJING3D_PLATFORM_" .. string.upper(platform_dir)),
-        ("CJING3D_RENDERER_" .. string.upper(renderer)),
     }
+
+    if renderer ~= "" then 
+        defines { "CJING3D_RENDERER_" .. string.upper(renderer) }   
+    end 
 
     if net_lib ~= "" then 
         defines { "CJING3D_NETWORK_" .. string.upper(net_lib) }

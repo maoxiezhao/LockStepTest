@@ -24,11 +24,6 @@
     base :
     {
         // assets directory
-        jcs_def : 
-        {
-            assets_dir : ""
-        },
-
         print_header : true,
 
         // build config
@@ -42,13 +37,6 @@
     // platform:win32
     win32(base) :
     {
-        // source assets directory
-        jcs_def : 
-        {
-            assets_dir : "assets",
-            platforms : "x64"
-        },
-
         // clean
         clean : {
             type: clean,
@@ -102,15 +90,6 @@
                 "--build_app",     // create default app project
                 "--net_lib=asio",
                 // "--no_editor",  // does not create default editor project
-            ]
-        },
-
-        // copy
-        copy : {
-            type : none,
-            files : [
-                ["${assets_dir}", "bin/win32/${platforms}/Debug/data/"],
-                ["${assets_dir}", "bin/win32/${platforms}/Release/data/"],
             ]
         },
 

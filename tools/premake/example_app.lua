@@ -102,7 +102,7 @@ function create_example_app(project_name, source_directory, root_directory, app_
         if work_dir ~= nil then 
             debug_dir = work_dir
         else
-            debug_dir = env_dir .. "assets"
+            debug_dir = target_dir
         end 
         debugdir (debug_dir)
 
@@ -117,10 +117,6 @@ function create_example_app(project_name, source_directory, root_directory, app_
                 dependson { dependency }
             end 
         end 
-
-        -- set engine dependencies
-        local engine_dependencies = default_engine_dependencies
-
         --------------------------------------------------------------
         -- Config
         targetdir (target_dir)
@@ -128,14 +124,12 @@ function create_example_app(project_name, source_directory, root_directory, app_
         filter {"configurations:Debug"}
             targetname(project_name)
             defines { "DEBUG" }
-            setup_engine("Debug", engine_dependencies)
             link_all_extra_dependencies(extra_dependencies, "Debug")
 
         -- Release config
         filter {"configurations:Release"}
             targetname(project_name .. "_d")
             defines { "NDEBUG" }
-            setup_engine("Release", engine_dependencies)
             link_all_extra_dependencies(extra_dependencies, "Release")
 
         filter { }
